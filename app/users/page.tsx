@@ -1,11 +1,17 @@
 import UserTable from "./UserTable";
 
-const UsersPage = () => {
+interface Props {
+  searchParams: {
+    sortOrder: string;
+  };
+}
+
+const UsersPage = ({ searchParams: { sortOrder } }: Props) => {
   return (
     <>
       <p>{new Date().toLocaleTimeString()}</p>
       <br />
-      <UserTable />
+      <UserTable sortOrder={sortOrder} />
     </>
   );
 };
