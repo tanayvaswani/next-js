@@ -2,6 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,7 +31,9 @@ export default function RootLayout({
             <Link href="/admin">Admin</Link>
           </h3>
         </div>
-        <div>{children}</div>
+        <div>
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </div>
       </body>
     </html>
   );
