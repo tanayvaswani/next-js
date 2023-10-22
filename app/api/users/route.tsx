@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import schema from "./schema";
 
 export function GET(request: NextRequest) {
   // get users from a db // hard coded for now
@@ -12,8 +13,10 @@ export function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
-  if (!body.name) {
-    return NextResponse.json({ error: "Invalid/Empty name" }, { status: 400 });
+  const validation = schema.safeParse(body);
+
+  if (!validation.success) {
+    return NextResponse.json(validation.error.errors, { status: 400 });
   }
 
   return NextResponse.json(body, { status: 201 });
