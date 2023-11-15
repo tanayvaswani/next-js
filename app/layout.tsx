@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import Link from "next/link";
 import { Suspense } from "react";
 import Loading from "./loading";
+import AuthProvider from "./components/auth/provider";
+import Navbar from "./components/navbar/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,22 +21,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="dark" className="flex flex-col">
-      <body className={inter.className}>
-        <div className="flex p-4 m-4 justify-center space-x-4 border-b-2">
-          <h3>
-            <Link href="/">Home</Link>
-          </h3>
-          <h3>
-            <Link href="/users">Users</Link>
-          </h3>
-          <h3>
-            <Link href="/admin">Admin</Link>
-          </h3>
-        </div>
-        <div>
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-        </div>
-      </body>
+      <AuthProvider>
+        <body className={inter.className}>
+          <div className="flex p-4 w-full justify-center border-b">
+            <Navbar />
+          </div>
+          <div className="mt-6">
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+          </div>
+        </body>
+      </AuthProvider>
     </html>
   );
 }
