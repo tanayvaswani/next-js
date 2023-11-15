@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="dark" className="flex flex-col">
       <body className={inter.className}>
-        <div className="flex p-4 m-4 justify-center space-x-4">
+        <div className="flex p-4 m-4 justify-center space-x-4 border-b-2">
           <h3>
             <Link href="/">Home</Link>
           </h3>
