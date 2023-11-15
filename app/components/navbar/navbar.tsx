@@ -23,8 +23,9 @@ const Navbar = () => {
         </h3>
       )}
       {status === "authenticated" && (
-        <h3 className="text-green-500">
+        <h3 className="text-green-500 flex space-x-8">
           <div>{session.user!.name}</div>
+          <Link href="/api/auth/signout">Sign Out</Link>
         </h3>
       )}
     </div>
